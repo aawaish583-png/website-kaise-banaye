@@ -119,73 +119,90 @@
             box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
         }
 
-        /* Header & Nav - FIXED DESKTOP MENU */
-        header {
-            background-color: white;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-        }
-        .header-container {
+        /* Sidebar Navigation */
+        .main-wrapper {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 20px;
+            min-height: 100vh;
         }
-        .logo {
+        .sidebar {
+            width: 280px;
+            background: linear-gradient(180deg, var(--primary-dark) 0%, var(--primary) 100%);
+            color: white;
+            position: fixed;
+            height: 100vh;
+            overflow-y: auto;
+            z-index: 100;
+            padding: 20px 0;
+            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .sidebar-logo {
             font-family: 'Poppins', sans-serif;
             font-size: 1.8rem;
             font-weight: 700;
-            color: var(--primary);
+            color: white;
+            text-align: center;
+            padding: 20px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            margin-bottom: 30px;
         }
-        .logo span {
-            color: var(--secondary);
+        .sidebar-logo span {
+            color: var(--accent);
         }
-        nav ul {
-            display: flex;
+        .sidebar-nav ul {
             list-style: none;
+            padding: 0 20px;
         }
-        nav li {
-            margin-left: 20px;
+        .sidebar-nav li {
+            margin-bottom: 8px;
         }
-        nav a {
+        .sidebar-nav a {
+            display: block;
+            padding: 12px 20px;
+            color: #cbd5e0;
+            border-radius: 8px;
             font-weight: 500;
-            color: var(--dark);
-            position: relative;
-            padding: 5px 0;
-            font-size: 0.95rem;
-            white-space: nowrap;
+            transition: var(--transition);
         }
-        nav a:hover {
-            color: var(--secondary);
+        .sidebar-nav a:hover, .sidebar-nav a.active {
+            background: rgba(255,255,255,0.1);
+            color: white;
+            padding-left: 25px;
         }
-        nav a::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            background: var(--secondary);
-            bottom: 0;
-            left: 0;
-            transition: width 0.3s;
-        }
-        nav a:hover::after {
-            width: 100%;
+        .sidebar-nav i {
+            margin-right: 10px;
+            width: 20px;
+            text-align: center;
         }
         .mobile-toggle {
             display: none;
             font-size: 1.5rem;
             cursor: pointer;
             color: var(--primary);
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            background: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--shadow);
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            margin-left: 280px;
+            width: calc(100% - 280px);
         }
 
         /* Hero */
         .hero {
             background: linear-gradient(135deg, #f0f7ff 0%, #e6f7ff 100%);
-            padding-top: 150px;
-            padding-bottom: 100px;
+            padding: 120px 0 80px;
             text-align: center;
         }
         .hero-content h1 {
@@ -213,43 +230,6 @@
         }
         .problem .icon-box {
             color: #e53e3e;
-        }
-
-        /* Accordion/Toggle Styles for Legal & Info Sections */
-        .accordion-section {
-            margin: 40px 0;
-            border-radius: var(--radius);
-            overflow: hidden;
-            box-shadow: var(--shadow);
-            border: 1px solid #e2e8f0;
-        }
-        .accordion-header {
-            padding: 22px 30px;
-            background: white;
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-weight: 600;
-            font-size: 1.3rem;
-            color: var(--primary);
-        }
-        .accordion-header i {
-            transition: var(--transition);
-        }
-        .accordion-content {
-            padding: 0 30px;
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.5s ease, padding 0.5s ease;
-            background: #f9fbfd;
-        }
-        .accordion-section.active .accordion-content {
-            max-height: 5000px;
-            padding: 30px;
-        }
-        .accordion-section.active .accordion-header i {
-            transform: rotate(180deg);
         }
 
         /* FAQ Accordion */
@@ -294,41 +274,38 @@
         /* Scam Alert */
         .scam-alert {
             background: #fff5f5;
+            border-left: 5px solid #e53e3e;
+            padding: 20px;
             border-radius: 8px;
             margin: 40px 0;
-            overflow: hidden;
-            border: 1px solid #fed7d7;
         }
-        .scam-header {
-            padding: 20px;
-            background: #fff5f5;
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-weight: 600;
+        .scam-alert h4 {
             color: #c53030;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
-        .scam-header i {
-            transition: var(--transition);
-        }
-        .scam-content {
-            padding: 0 20px;
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease, padding 0.3s ease;
-            background: #fff5f5;
-        }
-        .scam-alert.active .scam-content {
-            max-height: 800px;
-            padding: 20px;
-            border-top: 1px solid #fed7d7;
-        }
-        .scam-alert.active .scam-header i {
-            transform: rotate(180deg);
+        .scam-toggle {
+            background: none;
+            border: none;
+            color: var(--secondary);
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 10px;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
         }
 
-        /* Contact Form */
+        /* Legal Sections */
+        .legal-section {
+            background-color: var(--light);
+            padding: 60px 0;
+        }
+        .legal-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
         .contact-form {
             display: flex;
             flex-direction: column;
@@ -388,14 +365,6 @@
         }
 
         /* Responsive */
-        @media (max-width: 1200px) {
-            nav li {
-                margin-left: 15px;
-            }
-            nav a {
-                font-size: 0.9rem;
-            }
-        }
         @media (max-width: 992px) {
             .hero-content h1 {
                 font-size: 2.5rem;
@@ -403,538 +372,427 @@
             .section-title h2 {
                 font-size: 2rem;
             }
-            nav ul {
-                display: none;
-            }
-            .mobile-toggle {
-                display: block;
-            }
-            nav ul.active {
-                display: flex;
-                position: absolute;
-                top: 70px;
-                left: 0;
-                width: 100%;
-                background: white;
-                flex-direction: column;
-                padding: 20px;
-                box-shadow: 0 10px 15px rgba(0,0,0,0.1);
-                z-index: 999;
-            }
-            nav ul.active li {
-                margin: 10px 0;
-                margin-left: 0;
-            }
         }
         @media (max-width: 768px) {
+            .main-wrapper {
+                flex-direction: column;
+            }
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+                padding: 0;
+                display: none;
+            }
+            .sidebar.active {
+                display: block;
+            }
+            .sidebar-logo {
+                padding: 15px;
+                font-size: 1.5rem;
+                margin-bottom: 0;
+            }
+            .main-content {
+                margin-left: 0;
+                width: 100%;
+            }
+            .mobile-toggle {
+                display: flex;
+            }
+            .hero {
+                padding: 100px 0 60px;
+            }
             .hero-content h1 {
                 font-size: 2rem;
             }
             section {
                 padding: 60px 0;
             }
-            .accordion-header {
-                font-size: 1.1rem;
-                padding: 18px 20px;
-            }
-            .accordion-content {
-                padding: 0 20px;
-            }
-            .accordion-section.active .accordion-content {
-                padding: 20px;
-            }
         }
     </style>
 </head>
 <body>
-    <!-- Header -->
-    <header>
-        <div class="header-container container">
-            <a href="#home" class="logo">Website<span>Guide</span></a>
-            <div class="mobile-toggle" id="mobileToggle">
-                <i class="fas fa-bars"></i>
-            </div>
-            <nav>
-                <ul id="navMenu">
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="wordpress.html">WordPress Kya Hai</a></li>
-                    <li><a href="free-vs-paid-hosting.html">Free vs Paid Hosting</a></li>
-                    <li><a href="bluehost-review.html">Bluehost Review</a></li>
-                    <li><a href="domain-kaise-kharide.html">Domain Kaise Kharide</a></li>
-                    <li><a href="blog-kaise-start-kare.html">Blog Kaise Start Kare</a></li>
-                    <li><a href="online-earning.html">Online Earning With Website</a></li>
-                    <li><a href="students-website.html">Students Ke Liye Website</a></li>
-                    <li><a href="free-tools.html">Free Tools</a></li>
-                    <li><a href="#faq-accordion">FAQ</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
-
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="container hero-content">
-            <h1>Website Kaise Banaye – Step by Step Guide (2026)</h1>
-            <p>Apna professional website ya blog banane ka simple guide. Bina coding knowledge ke, clear steps me seekhiye. Reliable hosting se shuru kare aur apna online presence banaye.</p>
-            <a href="#solution" class="btn">Start With Reliable Hosting</a>
-        </div>
-    </section>
-
-    <!-- Problem Section -->
-    <section class="problem">
-        <div class="container">
-            <div class="section-title">
-                <h2>Free Hosting Ke Common Problems</h2>
-                <p>Free services may look attractive, but they have limitations for serious website owners.</p>
-            </div>
-            <div class="problem-grid">
-                <div class="card">
-                    <div class="icon-box">
-                        <i class="fas fa-tachometer-alt"></i>
-                    </div>
-                    <h3>Slow Speed</h3>
-                    <p>Free servers are often overloaded, resulting in slow page loading. This frustrates visitors and negatively impacts search engine rankings.</p>
-                </div>
-                <div class="card">
-                    <div class="icon-box">
-                        <i class="fas fa-exclamation-triangle"></i>
-                    </div>
-                    <h3>Frequent Downtime</h3>
-                    <p>Your website may become unavailable unexpectedly, causing you to lose visitors and harming your site's credibility.</p>
-                </div>
-                <div class="card">
-                    <div class="icon-box">
-                        <i class="fas fa-headset"></i>
-                    </div>
-                    <h3>No Support</h3>
-                    <p>When technical issues arise, you're often left to solve them alone without access to professional customer support.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Solution Section -->
-    <section id="solution" class="solution">
-        <div class="container">
-            <div class="section-title">
-                <h2>Solution: Reliable Hosting Ka Importance</h2>
-                <p>A strong foundation is essential for any successful website.</p>
-            </div>
-            <div class="solution-grid">
-                <div class="card">
-                    <div class="icon-box">
-                        <i class="fas fa-rocket"></i>
-                    </div>
-                    <h3>Better Speed & Performance</h3>
-                    <p>Quality hosting uses optimized servers and caching to ensure fast loading times, which improves user experience and SEO.</p>
-                </div>
-                <div class="card">
-                    <div class="icon-box">
-                        <i class="fas fa-shield-alt"></i>
-                    </div>
-                    <h3>Enhanced Security</h3>
-                    <p>Protect your website from malware, hackers, and spam with built-in security features and regular updates.</p>
-                </div>
-                <div class="card">
-                    <div class="icon-box">
-                        <i class="fas fa-life-ring"></i>
-                    </div>
-                    <h3>24/7 Expert Support</h3>
-                    <p>Get help whenever you need it from knowledgeable support teams via live chat, phone, or email.</p>
-                </div>
-            </div>
-            <p style="text-align: center; margin-top: 30px;">Choosing a reliable hosting provider is the first technical decision for your website. It's an investment in stability and growth.</p>
-        </div>
-    </section>
-
-    <!-- Audience Section -->
-    <section class="audience">
-        <div class="container">
-            <div class="section-title">
-                <h2>Who Is This Guide For?</h2>
-                <p>Our educational content is designed for these beginners.</p>
-            </div>
-            <div class="audience-grid">
-                <div class="card">
-                    <div class="icon-box">
-                        <i class="fas fa-user-graduate"></i>
-                    </div>
-                    <h3>Students</h3>
-                    <p>Create a portfolio, project website, or personal blog to showcase your skills and academic work online.</p>
-                </div>
-                <div class="card">
-                    <div class="icon-box">
-                        <i class="fas fa-blog"></i>
-                    </div>
-                    <h3>Bloggers</h3>
-                    <p>Start a professional blog with the right tools to share your knowledge, experiences, or passion with the world.</p>
-                </div>
-                <div class="card">
-                    <div class="icon-box">
-                        <i class="fas fa-store"></i>
-                    </div>
-                    <h3>Small Business Owners</h3>
-                    <p>Establish an online presence for your local business, service, or shop to reach more customers.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Scam Awareness Accordion -->
-    <div class="container">
-        <div class="scam-alert" id="scamAlert">
-            <div class="scam-header">
-                <span><i class="fas fa-exclamation-circle"></i> Online Scam Awareness Warning (Click to Read)</span>
-                <i class="fas fa-chevron-down"></i>
-            </div>
-            <div class="scam-content">
-                <p>The internet offers incredible opportunities, but it also attracts individuals who create scams targeting beginners. Awareness is your best protection.</p>
-                
-                <h3>Common Website & Online Earning Scams</h3>
-                <p><strong>1. "Guaranteed Income" Programs:</strong> Any course, tool, or service that promises you will definitely make money from your website is likely misleading. While websites can generate income, there are no guarantees. Success depends on content quality, niche selection, marketing effort, and consistency over time.</p>
-                
-                <p><strong>2. "Instant Approval" Services:</strong> Be wary of services claiming they can get your website instantly approved for Google AdSense or other advertising networks for a fee. These networks have specific quality guidelines, and approval is never guaranteed by third parties.</p>
-                
-                <p><strong>3. Fake Hosting & Domain "Lifetime Deals":</strong> Extremely cheap "lifetime" hosting offers often lead to terrible service, hidden fees, or companies that disappear. Reputable hosting companies offer transparent monthly or annual plans.</p>
-                
-                <p><strong>4. Plagiarized or Fake "Courses":</strong> Some individuals repackage free information found online and sell it as an exclusive, expensive course. Always research the instructor and look for independent reviews before purchasing any educational product.</p>
-                
-                <h3>How to Protect Yourself</h3>
-                <ul style="margin-left: 20px; margin-bottom: 20px;">
-                    <li><strong>Research Extensively:</strong> Before buying any service or course, search for the company name + "review" or "scam" online.</li>
-                    <li><strong>Start Small:</strong> Begin with affordable, month-to-month plans instead of locking into long-term contracts with unknown companies.</li>
-                    <li><strong>Use Reputable Providers:</strong> Choose hosting companies and domain registrars with a long-standing, positive reputation in the industry.</li>
-                    <li><strong>Value Transparency:</strong> Legitimate educational resources (like this one) clearly state their purpose and disclose any affiliate relationships.</li>
-                    <li><strong>Trust Your Instincts:</strong> If an offer seems "too good to be true," it almost always is.</li>
-                </ul>
-                
-                <p><strong>Our Promise:</strong> WebsiteGuide is an independent educational resource. We do not sell courses or "secret methods." We provide free information to help you make informed decisions. Any affiliate links are for services we genuinely believe are useful for beginners, and they come at no extra cost to you. We never guarantee income or specific results.</p>
-                
-                <p style="background: #fed7d7; padding: 15px; border-radius: 6px; font-weight: 600; color: #742a2a;">
-                    <i class="fas fa-info-circle"></i> Remember: Building a successful website is a journey that requires learning, patience, and effort. There are no magic shortcuts.
-                </p>
-            </div>
-        </div>
+    <!-- Mobile Toggle Button -->
+    <div class="mobile-toggle" id="mobileToggle">
+        <i class="fas fa-bars"></i>
     </div>
 
-    <!-- FAQ Accordion Section -->
-    <section id="faq-accordion" class="faq">
-        <div class="container">
-            <div class="section-title">
-                <h2>Frequently Asked Questions</h2>
-                <p>Click on any question to see the detailed answer.</p>
+    <!-- Main Wrapper -->
+    <div class="main-wrapper">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-logo">
+                Website<span>Guide</span>
             </div>
-            <div class="faq-container">
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <span>Kya website banane ke liye coding aani chahiye?</span>
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="faq-answer">
-                        <p>Nahi, bilkul nahi. Aajkal ke modern platforms, jaise ki WordPress, aapko bina koi code likhe professional website banane ki suvidha dete hain. WordPress me aap "themes" aur "page builders" ka use karte hain, jo visual interface provide karte hain – matlab aap elements ko drag-and-drop karke apna design bana sakte hain. Ye aapko apni poori energy content creation aur strategy par focus karne deta hai. Coding seekhna ek additional skill hai, jo aap baad me bhi seekh sakte hain agar aap advanced customization karna chahte hain, lekin shuruwat ke liye ye bilkul bhi zaroori nahi hai.</p>
-                    </div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <span>Website banane me kitna kharch aata hai aur monthly kya costs hote hain?</span>
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="faq-answer">
-                        <p>Ek basic, reliable website ke liye aapko mainly do chizon ke liye pay karna padta hai: <strong>Hosting</strong> aur <strong>Domain Name</strong>.</p>
-                        <p><strong>Initial/Annual Cost Breakdown (Approximate):</strong></p>
-                        <ul style="margin-left: 20px; margin-bottom: 15px;">
-                            <li><strong>Domain Name:</strong> ₹800 - ₹1200 per year (e.g., .in, .com).</li>
-                            <li><strong>Basic Shared Hosting:</strong> ₹2000 - ₹4000 per year.</li>
-                            <li><strong>WordPress (Software):</strong> FREE.</li>
-                            <li><strong>Basic Theme & Plugins:</strong> FREE options available.</li>
-                        </ul>
-                        <p>Is hisaab se, aapki shuruwati cost lagbhag ₹3000 - ₹5000 per year ho sakti hai, jo monthly ₹250 - ₹420 ke beech aata hai. Ye cost aapke requirements ke sath badhti hai – jaise agar aap premium theme, extra security, ya advanced hosting plan choose karte hain. Hamesha recommended yehi hai ki aap kisi reputable provider se shuru karein jinki transparent pricing ho, aur aap month-to-month plan le sakte hain to test karein.</p>
-                    </div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <span>Kya main apne website se paisa kama sakta hoon? Kaise?</span>
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="faq-answer">
-                        <p>Ha, websites se income generate karna possible hai, lekin isme time, mehnat, aur consistent effort lagta hai. Income ko "kamaana" padta hai; ye automatically nahi hota. Kuch ethical aur common methods is prakar hain:</p>
-                        <p><strong>1. Display Advertising (e.g., Google AdSense):</strong> Aap apne website par relevant ads display karte hain. Aapko iske liye quality content banani hogi aur Google ke guidelines follow karne honge. Approval milna aur earnings aane me time lag sakta hai.</p>
-                        <p><strong>2. Affiliate Marketing:</strong> Aap kisi company ke products ya services ka review ya mention karte hain, aur unke special link share karte hain. Agar koi visitor aapke link se purchase karta hai, to aapko commission milta hai. Ye aapki credibility aur trust par depend karta hai.</p>
-                        <p><strong>3. Selling Products/Services:</strong> Aap apna digital product (e-book, course), physical product, ya professional service (consulting, design) bech sakte hain.</p>
-                        <p><strong>Important Note:</strong> Koi bhi method "get rich quick" scheme nahi hai. Shuruwat me earnings negligible ho sakti hain. Success ke liye high-quality, helpful content, regular updates, aur audience building zaroori hai. Hum kisi bhi tarah ki income guarantee nahi dete.</p>
-                    </div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <span>Sabse aasan aur recommended tarika kaunsa hai website banane ka?</span>
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="faq-answer">
-                        <p>Dunia bhar ke 40%+ websites jo bani hain, wo <strong>WordPress</strong> platform par bani hain, aur beginners ke liye ye sabse recommended option hai. Iske karan ye hain:</p>
-                        <p><strong>1. User-Friendly:</strong> WordPress ka interface intuitive hai. Aap easily posts add, pages create, aur menu customize kar sakte hain.</p>
-                        <p><strong>2. Flexible & Powerful:</strong> Ye ek simple blog bana sakta hai ya ek pura e-commerce store. "Plugins" ke through aap kisi bhi tarah ki functionality add kar sakte hain (contact form, security, SEO).</p>
-                        <p><strong>3. Huge Community & Support:</strong> Agar aapko koi problem hai, to thousands of free tutorials, forums, aur documentation available hain online. Aap kabhi bhi atke nahi rahenge.</p>
-                        <p><strong>4. One-Click Installation:</strong> Almost all reliable hosting providers (like Bluehost, SiteGround) offer "one-click WordPress install." Matlab, aapko software manually download-install karne ki zaroorat nahi hai; aapke hosting control panel me ek button hai jisse WordPress automatically setup ho jata hai.</p>
-                        <p>Isliye, humari recommendation hai: Ek <strong>reliable hosting provider</strong> choose karein, <strong>domain name</strong> register karein, aur phir <strong>WordPress</strong> ko one-click install karke apna website banana shuru karein.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li><a href="#home" class="active"><i class="fas fa-home"></i> Home</a></li>
+                    <li><a href="wordpress.html"><i class="fab fa-wordpress"></i> WordPress Kya Hai</a></li>
+                    <li><a href="free-vs-paid-hosting.html"><i class="fas fa-server"></i> Free vs Paid Hosting</a></li>
+                    <li><a href="bluehost-review.html"><i class="fas fa-search"></i> Bluehost Review</a></li>
+                    <li><a href="domain-kaise-kharide.html"><i class="fas fa-globe"></i> Domain Kaise Kharide</a></li>
+                    <li><a href="blog-kaise-start-kare.html"><i class="fas fa-blog"></i> Blog Kaise Start Kare</a></li>
+                    <li><a href="online-earning.html"><i class="fas fa-rupee-sign"></i> Online Earning</a></li>
+                    <li><a href="students-website.html"><i class="fas fa-user-graduate"></i> Students Ke Liye</a></li>
+                    <li><a href="free-tools.html"><i class="fas fa-tools"></i> Free Tools</a></li>
+                    <li><a href="faq.html"><i class="fas fa-question-circle"></i> FAQ</a></li>
+                    <li><a href="#about"><i class="fas fa-info-circle"></i> About Us</a></li>
+                    <li><a href="#contact"><i class="fas fa-envelope"></i> Contact Us</a></li>
+                    <li><a href="#privacy"><i class="fas fa-shield-alt"></i> Privacy Policy</a></li>
+                    <li><a href="#terms"><i class="fas fa-file-contract"></i> Terms & Conditions</a></li>
+                    <li><a href="#disclaimer"><i class="fas fa-exclamation-triangle"></i> Disclaimer</a></li>
+                </ul>
+            </nav>
+        </aside>
 
-    <!-- Legal & Info Accordions Container -->
-    <section class="legal-sections">
-        <div class="container">
-            <div class="section-title">
-                <h2>Website Information & Policies</h2>
-                <p>Click on any section below to read detailed information.</p>
-            </div>
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Hero Section -->
+            <section id="home" class="hero">
+                <div class="container hero-content">
+                    <h1>Website Kaise Banaye – Step by Step Guide (2026)</h1>
+                    <p>Apna professional website ya blog banane ka simple guide. Bina coding knowledge ke, clear steps me seekhiye. Reliable hosting se shuru kare aur apna online presence banaye. Ye complete guide aapko website banane ke sabhi steps sikhaegi - domain selection se lekar hosting setup tak, WordPress installation se lekar website design tak.</p>
+                    <a href="#solution" class="btn">Start With Reliable Hosting</a>
+                </div>
+            </section>
 
-            <!-- About Us Accordion -->
-            <div class="accordion-section">
-                <div class="accordion-header">
-                    <span>About Us & Our Mission</span>
-                    <i class="fas fa-chevron-down"></i>
-                </div>
-                <div class="accordion-content">
-                    <p>Welcome to WebsiteGuide, an independent educational initiative launched in 2023. We observed that many Hindi-speaking beginners who want to create a website face two major barriers: overly complex technical information and a lack of trustworthy guidance in simple language. Our mission was born from this gap.</p>
-                    
-                    <h3>What We Do</h3>
-                    <p>We create comprehensive, step-by-step guides, tutorials, and comparisons that break down the process of website creation into easy-to-understand parts. We cover topics ranging from choosing your first domain name to understanding hosting, installing WordPress, and learning basic SEO principles. Our focus is always on the "why" behind the "how," empowering you to make informed decisions rather than just following instructions blindly.</p>
-                    
-                    <h3>Our Core Principles</h3>
-                    <ul style="margin-left: 20px; margin-bottom: 20px;">
-                        <li><strong>Education Over Promotion:</strong> Our primary goal is to educate. While we may mention specific tools or services as examples, our content is designed to help you understand the landscape, not to push a particular product.</li>
-                        <li><strong>Transparency:</strong> We clearly disclose any affiliate relationships. These links help support the free operation of this site but do not influence our editorial honesty.</li>
-                        <li><strong>Beginner-First Approach:</strong> We avoid jargon where possible and explain technical terms when we use them. We assume you're starting from zero.</li>
-                        <li><strong>Independence:</strong> We are not owned by, nor do we receive direct funding from, any hosting company, domain registrar, or tech giant. This allows us to maintain an unbiased perspective.</li>
-                    </ul>
-                    
-                    <h3>Who Runs This?</h3>
-                    <p>WebsiteGuide is run by a small team of web professionals, writers, and educators who are passionate about demystifying the web. We have collective experience in web development, content creation, digital marketing, and teaching. We believe that the ability to create a website is a fundamental skill in the modern world, akin to literacy, and it should be accessible to everyone regardless of their technical background or budget.</p>
-                    
-                    <p>Thank you for visiting. We hope our resources provide you with the clarity and confidence to start your own online journey.</p>
-                </div>
-            </div>
-
-            <!-- Contact Us Accordion -->
-            <div class="accordion-section">
-                <div class="accordion-header">
-                    <span>Contact Us</span>
-                    <i class="fas fa-chevron-down"></i>
-                </div>
-                <div class="accordion-content">
-                    <p>We value your feedback, questions, and suggestions. Please use the information and form below to get in touch with us. Please read the following points before contacting us to ensure a smooth and efficient process.</p>
-                    
-                    <h3>How to Reach Us</h3>
-                    <p><strong>For General Inquiries & Feedback:</strong> Please use the contact form provided below. This is the best way to ensure your message reaches the correct team member.</p>
-                    <p><strong>Response Time:</strong> We are a small, dedicated team. We strive to respond to all genuine, non-spam inquiries within <strong>3-5 business days</strong>. Please be patient.</p>
-                    
-                    <h3>What We Can Help With</h3>
-                    <ul style="margin-left: 20px; margin-bottom: 20px;">
-                        <li>Clarifications about the content in our guides.</li>
-                        <li>Suggestions for new tutorial topics you'd like us to cover.</li>
-                        <li>Reporting errors, broken links, or outdated information on the site.</li>
-                        <li>General questions about the website creation process.</li>
-                    </ul>
-                    
-                    <h3>What We Cannot Help With</h3>
-                    <p><em>Important:</em> WebsiteGuide is an <strong>informational website only</strong>. We are not a technical support service for third-party companies.</p>
-                    <ul style="margin-left: 20px; margin-bottom: 20px;">
-                        <li><strong>We cannot provide technical support</strong> for your specific hosting account, WordPress installation, or domain registrar issues. You must contact your service provider's official support team for such help.</li>
-                        <li>We cannot offer personalized website advice or consulting.</li>
-                        <li>We do not provide legal or financial advice.</li>
-                        <li>We cannot help with recovering hacked websites or accounts.</li>
-                    </ul>
-                    
-                    <div class="contact-form" id="contactForm">
-                        <div class="form-group">
-                            <input type="text" placeholder="Your Full Name" required>
+            <!-- Problem Section -->
+            <section class="problem">
+                <div class="container">
+                    <div class="section-title">
+                        <h2>Free Hosting Ke Common Problems</h2>
+                        <p>Free services may look attractive, but they have limitations for serious website owners.</p>
+                    </div>
+                    <div class="problem-grid">
+                        <div class="card">
+                            <div class="icon-box">
+                                <i class="fas fa-tachometer-alt"></i>
+                            </div>
+                            <h3>Slow Speed and Performance Issues</h3>
+                            <p>Free servers are often overloaded with hundreds of websites sharing limited resources, resulting in slow page loading times. This frustrates visitors and negatively impacts search engine rankings. Google's Core Web Vitals prioritize fast-loading sites, and free hosting typically fails to meet these standards. A slow website loses up to 70% of potential visitors within the first three seconds of loading.</p>
                         </div>
-                        <div class="form-group">
-                            <input type="email" placeholder="Your Email Address" required>
+                        <div class="card">
+                            <div class="icon-box">
+                                <i class="fas fa-exclamation-triangle"></i>
+                            </div>
+                            <h3>Frequent Downtime and Reliability Issues</h3>
+                            <p>Your website may become unavailable unexpectedly during peak traffic times, causing you to lose visitors and harming your site's credibility. Free hosting providers don't offer uptime guarantees, and your site could be down for hours without notice. This unreliability makes it impossible to run a professional website or business online where consistent availability is crucial for success.</p>
                         </div>
-                        <div class="form-group">
-                            <input type="text" placeholder="Subject of Your Message" required>
+                        <div class="card">
+                            <div class="icon-box">
+                                <i class="fas fa-headset"></i>
+                            </div>
+                            <h3>No Technical Support and Limited Features</h3>
+                            <p>When technical issues arise, you're often left to solve them alone without access to professional customer support. Free hosting typically offers limited storage, bandwidth, and essential features like SSL certificates, email accounts, and backup systems. These limitations prevent your website from growing and performing optimally in competitive online spaces.</p>
                         </div>
-                        <div class="form-group">
-                            <textarea placeholder="Your Detailed Message Here..." required></textarea>
-                        </div>
-                        <button type="submit" class="btn">Send Message</button>
                     </div>
-                    <p style="text-align: center; font-size: 0.9rem; margin-top: 20px; color: var(--gray);">By submitting, you agree to our Privacy Policy. We will not share your contact details.</p>
+                </div>
+            </section>
+
+            <!-- Solution Section -->
+            <section id="solution" class="solution">
+                <div class="container">
+                    <div class="section-title">
+                        <h2>Solution: Reliable Hosting Ka Importance</h2>
+                        <p>A strong foundation is essential for any successful website in 2026.</p>
+                    </div>
+                    <div class="solution-grid">
+                        <div class="card">
+                            <div class="icon-box">
+                                <i class="fas fa-rocket"></i>
+                            </div>
+                            <h3>Better Speed & Performance Optimization</h3>
+                            <p>Quality hosting uses optimized servers, SSD storage, advanced caching, and CDN integration to ensure fast loading times. This improves user experience, reduces bounce rates, and positively impacts SEO rankings. Google prioritizes fast websites, and reliable hosting ensures your site loads within 2-3 seconds, which is crucial for retaining visitors and improving conversion rates.</p>
+                        </div>
+                        <div class="card">
+                            <div class="icon-box">
+                                <i class="fas fa-shield-alt"></i>
+                            </div>
+                            <h3>Enhanced Security and Protection</h3>
+                            <p>Protect your website from malware, hackers, DDoS attacks, and spam with built-in security features, regular updates, firewalls, and automated backups. Reliable hosting includes SSL certificates for secure connections, daily malware scanning, and proactive threat detection. This security is essential for protecting visitor data and maintaining your website's reputation.</p>
+                        </div>
+                        <div class="card">
+                            <div class="icon-box">
+                                <i class="fas fa-life-ring"></i>
+                            </div>
+                            <h3>24/7 Expert Support and Resources</h3>
+                            <p>Get help whenever you need it from knowledgeable support teams via live chat, phone, or email. Premium hosting includes comprehensive knowledge bases, video tutorials, and community forums. This support is invaluable for beginners who need guidance on technical aspects, WordPress management, and website optimization strategies.</p>
+                        </div>
+                    </div>
+                    <p style="text-align: center; margin-top: 30px; font-size: 1.1rem;">Choosing a reliable hosting provider is the first technical decision for your website. It's an investment in stability, security, and growth potential. Premium hosting typically costs between ₹200-₹500 per month but provides features worth thousands in value through improved performance and security.</p>
+                </div>
+            </section>
+
+            <!-- Audience Section -->
+            <section class="audience">
+                <div class="container">
+                    <div class="section-title">
+                        <h2>Who Is This Guide For?</h2>
+                        <p>Our educational content is designed for these beginners in 2026.</p>
+                    </div>
+                    <div class="audience-grid">
+                        <div class="card">
+                            <div class="icon-box">
+                                <i class="fas fa-user-graduate"></i>
+                            </div>
+                            <h3>Students and Recent Graduates</h3>
+                            <p>Create a portfolio, project website, or personal blog to showcase your skills and academic work online. A professional website helps in job applications, internship opportunities, and establishing your personal brand. Students can document their learning journey, share research papers, or create educational content in their field of study.</p>
+                        </div>
+                        <div class="card">
+                            <div class="icon-box">
+                                <i class="fas fa-blog"></i>
+                            </div>
+                            <h3>Bloggers and Content Creators</h3>
+                            <p>Start a professional blog with the right tools to share your knowledge, experiences, or passion with the world. Whether you're interested in travel, food, technology, lifestyle, or education, a self-hosted website gives you complete control over your content, design, and monetization options without platform restrictions.</p>
+                        </div>
+                        <div class="card">
+                            <div class="icon-box">
+                                <i class="fas fa-store"></i>
+                            </div>
+                            <h3>Small Business Owners and Entrepreneurs</h3>
+                            <p>Establish an online presence for your local business, service, or shop to reach more customers. A website acts as your 24/7 digital storefront, providing information, generating leads, and building credibility. In today's digital age, even local businesses need websites to compete effectively and connect with tech-savvy consumers.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Scam Awareness -->
+            <div class="container">
+                <div class="scam-alert">
+                    <h4><i class="fas fa-exclamation-circle"></i> Online Scam Awareness Warning</h4>
+                    <p>Be cautious of websites or courses promising "instant money" or "guaranteed AdSense approval" in exchange for payment. Building a genuine, successful website requires time, effort, and quality content. Many fraudulent schemes target beginners with unrealistic promises of overnight success without actual work or skill development.</p>
+                    <button class="scam-toggle" id="scamToggle">
+                        <span>Read Important Safety Tips</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div id="scamMore" style="display: none; margin-top: 15px;">
+                        <p><strong>Safety Tips:</strong> Always research companies before purchasing. Read independent reviews from multiple sources. Start with affordable plans from reputable providers. Avoid "too good to be true" offers that promise unrealistic returns. This website is an educational resource; we do not sell hosting directly or guarantee any income.</p>
+                        <p><strong>Red Flags to Watch For:</strong> Websites demanding large upfront payments for "secret methods," guarantees of specific income amounts, pressure to buy immediately, and lack of transparent contact information. Legitimate educational resources provide free valuable content without pressure tactics.</p>
+                        <p><strong>Educational Purpose Only:</strong> This website exists to provide information based on research and experience. We are not affiliated with Google AdSense or any specific hosting company. All brand mentions are for educational comparison and illustration purposes only.</p>
+                    </div>
                 </div>
             </div>
 
-            <!-- Privacy Policy Accordion -->
-            <div class="accordion-section">
-                <div class="accordion-header">
-                    <span>Privacy Policy</span>
-                    <i class="fas fa-chevron-down"></i>
+            <!-- FAQ Section -->
+            <section id="faq" class="faq">
+                <div class="container">
+                    <div class="section-title">
+                        <h2>Frequently Asked Questions</h2>
+                        <p>Quick answers to common beginner questions in 2026.</p>
+                    </div>
+                    <div class="faq-container">
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                <span>Kya website banane ke liye coding aani chahiye?</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="faq-answer">
+                                <p>Nahi. Modern platforms like WordPress allow you to create beautiful, functional websites using drag-and-drop builders and themes without writing any code. You can focus on your content and design. WordPress offers thousands of free and premium themes, along with page builders like Elementor and Divi that provide visual editing interfaces. However, basic HTML/CSS knowledge can be helpful for customizations but is not required to start.</p>
+                            </div>
+                        </div>
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                <span>Website banane me kitna kharch aata hai?</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="faq-answer">
+                                <p>A basic, reliable website can start from approximately ₹200-₹500 per month for hosting and a domain name (₹800-₹1200 per year). WordPress software itself is free. Additional costs may include premium themes (₹2000-₹5000 one-time) or plugins. Many beginners successfully start with just hosting and domain costs. As your website grows, you might invest in premium tools, but initial costs are minimal compared to potential benefits.</p>
+                            </div>
+                        </div>
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                <span>Kya main apne website se paisa kama sakta hoon?</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="faq-answer">
+                                <p>Websites can be monetized through various ethical methods like display advertising (Google AdSense), affiliate marketing, selling digital/products, offering services, or membership subscriptions. However, success requires quality content, consistent traffic, patience, and ongoing effort. Most successful websites take 6-12 months to generate meaningful revenue. There are no shortcuts or guarantees of income - focus on providing value to your audience first.</p>
+                            </div>
+                        </div>
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                <span>Sabse aasan tarika kaunsa hai website banane ka?</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="faq-answer">
+                                <p>For most beginners in 2026, using WordPress with a reliable hosting provider remains the simplest method. Many hosts offer one-click WordPress installation, free SSL certificates, and beginner-friendly dashboards. The process typically involves: 1) Choosing a domain name, 2) Selecting hosting, 3) Installing WordPress, 4) Choosing a theme, 5) Adding content. This method balances ease of use with flexibility for future growth.</p>
+                            </div>
+                        </div>
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                <span>Kitne time me website live ho jati hai?</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="faq-answer">
+                                <p>With modern hosting and WordPress, technical setup can be completed in under 30 minutes. Your basic website can be live on the internet within an hour of starting. However, creating quality content, designing pages, and optimizing for visitors typically takes several days to weeks. The initial setup is quick, but building a valuable website is an ongoing process that continues for as long as you maintain the site.</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="accordion-content">
-                    <p>This Privacy Policy outlines how WebsiteGuide ("we," "our," or "the site") collects, uses, and protects information gathered from visitors. We are committed to safeguarding your privacy and being transparent about our practices.</p>
-                    
-                    <h3>1. Information We Do Not Collect</h3>
-                    <p>We want to be perfectly clear: <strong>We do not collect sensitive personal information</strong> such as your financial details, government ID numbers, or home address. You can browse the vast majority of our website anonymously.</p>
-                    
-                    <h3>2. Information We May Collect</h3>
-                    <p><strong>Non-Personal Data:</strong> Like most websites, our hosting server automatically logs anonymous information when you visit. This may include your browser type (Chrome, Firefox), operating system (Windows, Android), the referring website (e.g., Google search), pages you viewed, the time and date of your visit, and your general geographic location (country/city level, not exact address). This data is aggregated and used to analyze site traffic trends and improve our content. It cannot be used to identify you personally.</p>
-                    <p><strong>Contact Form Data:</strong> If you choose to use our contact form, we collect the information you voluntarily provide: your name, email address, and message. This information is used solely to respond to your inquiry and is not added to a marketing list unless you explicitly opt-in.</p>
-                    
-                    <h3>3. Cookies & Tracking Technologies</h3>
-                    <p>Our site may use "cookies" – small data files stored on your device. We use them for essential functions and to enhance your experience.</p>
-                    <ul style="margin-left: 20px; margin-bottom: 20px;">
-                        <li><strong>Essential Cookies:</strong> Required for basic site functionality.</li>
-                        <li><strong>Analytics Cookies:</strong> We use a privacy-friendly analytics service to understand how visitors use our site (e.g., which pages are popular). This helps us improve our content.</li>
-                        <li><strong>Third-Party Cookies (Advertising):</strong> Third-party advertising partners, such as Google AdSense, may use cookies to serve ads based on your prior visits to our website or other sites on the internet. This is known as interest-based advertising.</li>
-                    </ul>
-                    <p>You can control cookie settings through your browser. However, disabling essential cookies may affect how the site functions.</p>
-                    
-                    <h3>4. Third-Party Links & Embedded Content</h3>
-                    <p>Our website contains links to other sites (e.g., hosting companies) and may embed content (like videos). We are not responsible for the privacy practices or content of these external sites. We encourage you to read their privacy policies when you leave our site.</p>
-                    
-                    <h3>5. Data Security</h3>
-                    <p>We implement reasonable security measures to protect against unauthorized access to or disclosure of the limited data we hold. However, no internet transmission is 100% secure.</p>
-                    
-                    <h3>6. Your Rights (CCPA/GDPR Considerations)</h3>
-                    <p>You have the right to:
-                        <ul style="margin-left: 20px;">
-                            <li>Know what personal data we hold about you (if any).</li>
-                            <li>Request deletion of your personal data (e.g., a message you sent via the contact form).</li>
-                            <li>Opt-out of the sale of your personal information (we do not sell your data).</li>
-                        </ul>
-                    To exercise these rights, please contact us using the form in the "Contact Us" section.
-                    </p>
-                    
-                    <p><em>This policy is effective as of March 2026 and may be updated periodically. The continued use of the site constitutes acceptance of the updated policy.</em></p>
-                </div>
-            </div>
+            </section>
 
-            <!-- Terms & Conditions Accordion -->
-            <div class="accordion-section">
-                <div class="accordion-header">
-                    <span>Terms & Conditions</span>
-                    <i class="fas fa-chevron-down"></i>
+            <!-- About Us Section -->
+            <section id="about" class="legal-section">
+                <div class="container">
+                    <div class="section-title">
+                        <h2>About Us</h2>
+                    </div>
+                    <div class="legal-content">
+                        <p>WebsiteGuide is an independent educational resource created in 2023 by a team of web developers, content creators, and digital marketers. Our mission is to provide clear, accurate, and beginner-friendly information about creating and managing websites in the constantly evolving digital landscape of 2026.</p>
+                        <p>We believe that everyone should have access to the knowledge needed to establish an online presence, whether for personal expression, educational purposes, or business growth. Our content is created based on extensive research, hands-on experience, and industry best practices, with regular updates to reflect current technologies and trends.</p>
+                        <p><strong>Educational Focus:</strong> We do not sell hosting, domains, or any products directly. Our goal is purely educational—to help you make informed decisions based on objective information. We maintain editorial independence and provide unbiased comparisons to empower beginners with knowledge rather than push specific products.</p>
+                        <p><strong>Content Philosophy:</strong> All our guides are written in simple Hindi-English mix to ensure accessibility for Indian beginners. We prioritize clarity over technical jargon, practical steps over theoretical concepts, and sustainable strategies over quick-fix solutions. We believe in teaching fundamentals that will remain relevant despite technological changes.</p>
+                    </div>
                 </div>
-                <div class="accordion-content">
-                    <p>These Terms & Conditions govern your use of the WebsiteGuide website. By accessing and using this site, you accept and agree to be bound by these terms. If you do not agree, please do not use this website.</p>
-                    
-                    <h3>1. Use of Content</h3>
-                    <p>All text, graphics, logos, button icons, images, audio clips, digital downloads, data compilations, and software presented on this site are the property of WebsiteGuide or its content suppliers and are protected by international copyright laws. The content is provided for <strong>personal, non-commercial, informational use only</strong>.</p>
-                    <p><strong>You may not:</strong></p>
-                    <ul style="margin-left: 20px; margin-bottom: 20px;">
-                        <li>Republish, redistribute, or sell any content from this site without express written permission.</li>
-                        <li>Use any automated system (e.g., "scraping") to extract data from the site.</li>
-                        <li>Use the site's content to create a competing service or product.</li>
-                    </ul>
-                    
-                    <h3>2. User Responsibilities</h3>
-                    <p>You agree to use this website only for lawful purposes. You agree not to:</p>
-                    <ul style="margin-left: 20px; margin-bottom: 20px;">
-                        <li>Use the site in any way that could damage, disable, overburden, or impair the site.</li>
-                        <li>Attempt to gain unauthorized access to any part of the site or its related systems.</li>
-                        <li>Submit false or misleading information through our contact forms.</li>
-                    </ul>
-                    
-                    <h3>3. Disclaimer of Warranties & Limitation of Liability</h3>
-                    <p><strong>The information on this site is provided "as is."</strong> We make no representations or warranties of any kind, express or implied, about the completeness, accuracy, reliability, suitability, or availability of the information, products, services, or related graphics contained on the website for any purpose. Any reliance you place on such information is therefore strictly at your own risk.</p>
-                    <p>In no event will WebsiteGuide, its team, or affiliates be liable for any loss or damage including without limitation, indirect or consequential loss or damage, or any loss or damage whatsoever arising from loss of data or profits arising out of, or in connection with, the use of this website.</p>
-                    
-                    <h3>4. External Links</h3>
-                    <p>Our website contains links to external websites that are not operated by us. We have no control over, and assume no responsibility for, the content, privacy policies, or practices of any third-party sites or services. The inclusion of any link does not imply endorsement by WebsiteGuide. You access linked sites at your own risk.</p>
-                    
-                    <h3>5. Affiliate Disclosure</h3>
-                    <p>WebsiteGuide participates in affiliate marketing programs. This means we may earn commissions on qualifying purchases made through our links to retailer sites. These commissions come at no extra cost to you and help fund the maintenance and creation of free content. Our editorial content is not influenced by these affiliate partnerships. We only recommend products or services we believe are genuinely useful for our audience.</p>
-                    
-                    <h3>6. Modifications to Terms</h3>
-                    <p>We reserve the right to modify these terms at any time. Changes will be posted on this page with an updated effective date. Your continued use of the site after changes constitutes acceptance.</p>
-                    
-                    <p><em>Effective Date: March 2026</em></p>
-                </div>
-            </div>
+            </section>
 
-            <!-- Disclaimer Accordion -->
-            <div class="accordion-section">
-                <div class="accordion-header">
-                    <span>Disclaimer</span>
-                    <i class="fas fa-chevron-down"></i>
+            <!-- Contact Us Section -->
+            <section id="contact" class="legal-section" style="background-color: #fff;">
+                <div class="container">
+                    <div class="section-title">
+                        <h2>Contact Us</h2>
+                        <p>We welcome your questions and feedback about our educational content.</p>
+                    </div>
+                    <div class="legal-content">
+                        <p>Please use the form below for general inquiries, content suggestions, or reporting errors. Note: We are an informational website and do not provide direct technical support for hosting services, WordPress troubleshooting, or website debugging. For such issues, please contact your hosting provider's support team.</p>
+                        <form class="contact-form" id="contactForm">
+                            <div class="form-group">
+                                <input type="text" placeholder="Your Name" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="email" placeholder="Your Email Address" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" placeholder="Subject" required>
+                            </div>
+                            <div class="form-group">
+                                <textarea placeholder="Your Message or Question" required></textarea>
+                            </div>
+                            <button type="submit" class="btn">Send Message</button>
+                        </form>
+                        <p style="text-align: center; font-size: 0.9rem; margin-top: 20px;">We aim to respond to genuine educational inquiries within 3-5 business days. Please note we cannot respond to requests for personal website troubleshooting or technical support services.</p>
+                    </div>
                 </div>
-                <div class="accordion-content">
-                    <p><strong>Please read this disclaimer carefully before using our website.</strong> This document outlines the important limitations regarding the information we provide.</p>
-                    
-                    <h3>1. Educational & Informational Purpose Only</h3>
-                    <p>WebsiteGuide is strictly an educational and informational resource. The content is based on our research, experience, and interpretation of industry best practices. It is <strong>not professional advice</strong>. We are not offering legal, financial, tax, or specific technical consulting services. You should always consult with a qualified professional for advice tailored to your unique situation before making any business or technical decisions.</p>
-                    
-                    <h3>2. No Income or Results Guarantee</h3>
-                    <p>This is the most critical point in our disclaimer. <strong>We do not promise, guarantee, or warrant that you will make any money or achieve any specific results by following the information on this site.</strong></p>
-                    <p>Any mentions of "earnings," "income," "revenue," or "success" are for illustrative, educational, and informational purposes only. They represent potential outcomes that some website owners might achieve under specific circumstances. Your actual results will vary dramatically and depend on numerous factors including but not limited to: your effort, skill level, dedication, niche selection, market changes, economic conditions, and a significant amount of luck.</p>
-                    <p><strong>Building a website that generates revenue is a serious business endeavor that carries inherent risk.</strong> You could invest time and money and see little to no return. You should be aware of this risk before beginning.</p>
-                    
-                    <h3>3. Accuracy of Information</h3>
-                    <p>We strive to provide accurate and up-to-date information, but the web hosting and technology landscape changes rapidly. We cannot guarantee that all information is current, complete, or error-free at the moment you read it. Prices, features, and policies of third-party services change without notice to us. It is <strong>your responsibility</strong> to verify any critical information (like pricing, features, or terms of service) directly on the official website of any company before making a purchase or decision.</p>
-                    
-                    <h3>4. No Formal Endorsement</h3>
-                    <p>Mentions of specific companies, brands, products, or services (e.g., WordPress, Bluehost, Google AdSense) are for educational and illustrative purposes only. They are intended to help you understand the available options in the market. Unless explicitly stated as a "sponsorship" or "partnership," these mentions <strong>do not constitute a formal endorsement, recommendation, or warranty</strong> of those entities. We are not affiliated with these companies unless explicitly stated.</p>
-                    
-                    <h3>5. Testimonials & Case Studies</h3>
-                    <p>Any testimonials or examples of results presented on this site are exceptional results, are not typical, and are not intended to represent or guarantee that anyone will achieve the same or similar results. Every individual's success depends on their background, dedication, desire, and motivation.</p>
-                    
-                    <h3>6. Your Accountability</h3>
-                    <p>You are solely responsible for your actions, decisions, and the outcomes that result from using the information on this website. You agree not to hold WebsiteGuide, its creators, or contributors liable for any decisions you make or actions you take.</p>
-                    
-                    <p style="background: #e6fffa; padding: 15px; border-radius: 6px; margin-top: 25px; border-left: 4px solid var(--accent);">
-                        <strong>In Summary:</strong> Use the information on this site as a starting point for your own research. Be skeptical of anyone who guarantees you income online. Take responsibility for your own journey. We are here to educate, not to promise outcomes.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
+            </section>
 
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-col">
-                    <h4>WebsiteGuide</h4>
-                    <p>Free educational resource for beginners learning to create websites. Empowering you with knowledge, not promises.</p>
+            <!-- Privacy Policy -->
+            <section id="privacy" class="legal-section">
+                <div class="container">
+                    <div class="section-title">
+                        <h2>Privacy Policy</h2>
+                    </div>
+                    <div class="legal-content">
+                        <p>Your privacy is important to us. This policy outlines how we handle information on WebsiteGuide, last updated March 2026.</p>
+                        <h3>Information Collection and Use</h3>
+                        <p>We may collect non-personally identifiable information such as browser type, language preference, referring site, and the date and time of each visitor request. This information helps us understand how visitors use our website, which pages are most popular, and how we can improve our content. We use Google Analytics for this purpose, which may use cookies to track usage patterns.</p>
+                        <h3>Contact Form Information</h3>
+                        <p>Information submitted through our contact form (name, email, message) is used solely to respond to your inquiry and is not shared with third parties for marketing purposes. We retain contact form submissions for up to one year for customer service purposes, but we do not use the information submitted for marketing purposes.</p>
+                        <h3>Advertising Partners</h3>
+                        <p>Third-party advertising partners may use cookies to serve ads based on a user's prior visits to our website or other websites. These companies may use aggregated information about your visits to this and other websites to provide advertisements about goods and services of interest to you. You can opt out of personalized advertising by visiting your Google Ads Settings or using browser plugins designed to block tracking.</p>
+                        <h3>Children's Privacy</h3>
+                        <p>Our Service does not address anyone under the age of 13. We do not knowingly collect personally identifiable information from children under 13. If you are a parent or guardian and you are aware that your child has provided us with Personal Information, please contact us.</p>
+                        <p><em>Last Updated: March 2026</em></p>
+                    </div>
                 </div>
-                <div class="footer-col">
-                    <h4>Quick Links</h4>
-                    <ul>
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="#faq-accordion">FAQ</a></li>
-                        <li><a href="#scamAlert">Scam Alert</a></li>
-                        <li><a href="#about">About Us</a></li>
-                    </ul>
+            </section>
+
+            <!-- Terms & Conditions -->
+            <section id="terms" class="legal-section" style="background-color: #fff;">
+                <div class="container">
+                    <div class="section-title">
+                        <h2>Terms & Conditions</h2>
+                    </div>
+                    <div class="legal-content">
+                        <p>By using WebsiteGuide, you agree to the following terms and conditions. Please read them carefully.</p>
+                        <h3>Educational Content Disclaimer</h3>
+                        <p>All content on this site is for informational and educational purposes only. We strive for accuracy but do not guarantee that all information is complete, current, or error-free. Technology changes rapidly, and some information may become outdated. We recommend verifying critical information with official sources or service providers.</p>
+                        <h3>No Professional Advice</h3>
+                        <p>The information provided does not constitute professional technical, financial, or legal advice. You should consult with qualified professionals for specific advice related to your situation. Website creation involves technical decisions that should be made based on your specific needs, budget, and goals.</p>
+                        <h3>External Links and References</h3>
+                        <p>Our website contains links to external sites for reference and educational purposes. We are not responsible for the content, privacy practices, or accuracy of information on those sites. The inclusion of any link does not imply endorsement by WebsiteGuide. You access third-party websites at your own risk.</p>
+                        <h3>Intellectual Property and Copyright</h3>
+                        <p>The content, layout, design, and structure of this website are the intellectual property of WebsiteGuide. You may not reproduce, distribute, or create derivative works without permission. However, you are welcome to share our content through social media or link to our pages with proper attribution.</p>
+                        <h3>User Responsibilities</h3>
+                        <p>You are responsible for your decisions and actions based on information from this website. Website success depends on numerous factors including effort, market conditions, competition, and skill development. We cannot be held liable for outcomes resulting from your use of information presented here.</p>
+                    </div>
                 </div>
-                <div class="footer-col">
-                    <h4>Legal & Info</h4>
-                    <ul>
-                        <li><a href="#privacy">Privacy Policy</a></li>
-                        <li><a href="#terms">Terms & Conditions</a></li>
-                        <li><a href="#disclaimer">Disclaimer</a></li>
-                        <li><a href="#contact">Contact Us</a></li>
-                    </ul>
+            </section>
+
+            <!-- Disclaimer -->
+            <section id="disclaimer" class="legal-section">
+                <div class="container">
+                    <div class="section-title">
+                        <h2>Disclaimer</h2>
+                    </div>
+                    <div class="legal-content">
+                        <p><strong>Important:</strong> Please read this disclaimer carefully before using our website or implementing any suggestions provided.</p>
+                        <h3>Affiliate Disclosure and Compensation</h3>
+                        <p>WebsiteGuide may participate in various affiliate marketing programs, including but not limited to hosting company affiliate programs. This means we may earn commissions on qualifying purchases made through our links to retailer sites, at no extra cost to you. These commissions help support the maintenance, hosting costs, and content creation for this free educational resource. We only recommend products/services we believe have value for beginners.</p>
+                        <h3>No Income or Success Guarantees</h3>
+                        <p>We do not promise, guarantee, or suggest that you will make money, achieve specific income levels, or gain specific results from creating a website. Any references to income or earnings are for illustrative and educational purposes only. Your success depends on numerous factors including effort, skill development, market conditions, competition, and economic factors beyond our control or prediction.</p>
+                        <h3>Accuracy and Timeliness of Information</h3>
+                        <p>While we strive to provide accurate and current information, the web hosting industry and digital technologies change rapidly. Pricing, features, and company policies mentioned may change without notice. We recommend verifying current information directly with service providers before making purchase decisions.</p>
+                        <h3>No Official Endorsements or Partnerships</h3>
+                        <p>Mentions of specific companies, products, or services are for educational illustration only and do not constitute an official endorsement or partnership unless explicitly stated. We are not affiliated with Google AdSense, WordPress.org, or any hosting company mentioned, unless specifically noted. All trademarks, logos, and brand names are the property of their respective owners.</p>
+                        <h3>Limitation of Liability</h3>
+                        <p>To the fullest extent permitted by law, WebsiteGuide shall not be liable for any indirect, incidental, special, consequential, or punitive damages resulting from your use of or inability to use the service or any content provided. You agree that your use of the service is at your sole risk.</p>
+                        <p>You are solely responsible for your decisions and their outcomes. This website exists for educational purposes only.</p>
+                    </div>
                 </div>
-                <div class="footer-col">
-                    <h4>Our Mission</h4>
-                    <p>To provide clear, honest, and comprehensive guides that help beginners navigate the world of website creation with confidence.</p>
+            </section>
+
+            <!-- Footer -->
+            <footer>
+                <div class="container">
+                    <div class="footer-content">
+                        <div class="footer-col">
+                            <h4>WebsiteGuide</h4>
+                            <p>Free educational resource for beginners learning to create websites. Independent, unbiased information since 2023.</p>
+                            <p style="margin-top: 15px; font-size: 0.9rem;">Helping beginners navigate website creation with clear, practical guidance.</p>
+                        </div>
+                        <div class="footer-col">
+                            <h4>Quick Links</h4>
+                            <ul>
+                                <li><a href="#home">Home</a></li>
+                                <li><a href="#about">About Us</a></li>
+                                <li><a href="#contact">Contact</a></li>
+                                <li><a href="#faq">FAQ</a></li>
+                                <li><a href="#privacy">Privacy Policy</a></li>
+                                <li><a href="#terms">Terms & Conditions</a></li>
+                                <li><a href="#disclaimer">Disclaimer</a></li>
+                            </ul>
+                        </div>
+                        <div class="footer-col">
+                            <h4>Educational Pages</h4>
+                            <ul>
+                                <li><a href="wordpress.html">WordPress Guide</a></li>
+                                <li><a href="free-vs-paid-hosting.html">Hosting Comparison</a></li>
+                                <li><a href="blog-kaise-start-kare.html">Blog Start Guide</a></li>
+                                <li><a href="domain-kaise-kharide.html">Domain Purchase Guide</a></li>
+                                <li><a href="students-website.html">For Students</a></li>
+                                <li><a href="free-tools.html">Free Tools</a></li>
+                            </ul>
+                        </div>
+                        <div class="footer-col">
+                            <h4>Connect & Learn</h4>
+                            <p>For educational updates and website tips. Follow us for regular insights into website creation and digital skills development.</p>
+                            <p style="margin-top: 15px; font-size: 0.9rem;">Email: info@websiteguide.example.com</p>
+                        </div>
+                    </div>
+                    <div class="copyright">
+                        <p>&copy; 2026 WebsiteGuide. All rights reserved. | This is an independent educational website.</p>
+                        <p style="font-size: 0.8rem; margin-top: 5px;">Content is for informational purposes only. No income guarantees. All trademarks are property of their respective owners.</p>
+                    </div>
                 </div>
-            </div>
-            <div class="copyright">
-                <p>&copy; 2026 WebsiteGuide. All rights reserved. | This is an independent educational website.</p>
-                <p style="font-size: 0.8rem; margin-top: 5px;">Content is for informational purposes only. No income guarantees. Always do your own research.</p>
-            </div>
-        </div>
-    </footer>
+            </footer>
+        </main>
+    </div>
 
     <!-- JavaScript -->
     <script>
-        // Mobile Navigation Toggle
+        // Mobile Toggle for Sidebar
         document.getElementById('mobileToggle').addEventListener('click', function() {
-            const navMenu = document.getElementById('navMenu');
-            navMenu.classList.toggle('active');
+            const sidebar = document.getElementById('sidebar');
+            sidebar.classList.toggle('active');
             this.querySelector('i').classList.toggle('fa-bars');
             this.querySelector('i').classList.toggle('fa-times');
         });
@@ -947,27 +805,19 @@
             });
         });
 
-        // Scam Alert Accordion
-        document.getElementById('scamAlert').addEventListener('click', function(e) {
-            if(e.target.closest('.scam-header')) {
-                this.classList.toggle('active');
+        // Scam Alert Toggle
+        document.getElementById('scamToggle').addEventListener('click', function() {
+            const moreText = document.getElementById('scamMore');
+            const icon = this.querySelector('i');
+            if (moreText.style.display === 'none' || moreText.style.display === '') {
+                moreText.style.display = 'block';
+                icon.classList.remove('fa-chevron-down');
+                icon.classList.add('fa-chevron-up');
+            } else {
+                moreText.style.display = 'none';
+                icon.classList.remove('fa-chevron-up');
+                icon.classList.add('fa-chevron-down');
             }
-        });
-
-        // Legal & Info Accordions - One at a time behavior
-        const accordionSections = document.querySelectorAll('.accordion-section');
-        accordionSections.forEach(section => {
-            const header = section.querySelector('.accordion-header');
-            header.addEventListener('click', () => {
-                // Close all other sections
-                accordionSections.forEach(sec => {
-                    if (sec !== section) {
-                        sec.classList.remove('active');
-                    }
-                });
-                // Toggle the clicked section
-                section.classList.toggle('active');
-            });
         });
 
         // Contact Form Submission (front-end only)
@@ -977,12 +827,36 @@
             this.reset();
         });
 
-        // Close mobile menu on link click
-        document.querySelectorAll('#navMenu a').forEach(link => {
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.sidebar-nav a').forEach(link => {
             link.addEventListener('click', () => {
-                document.getElementById('navMenu').classList.remove('active');
-                document.getElementById('mobileToggle').querySelector('i').classList.remove('fa-times');
-                document.getElementById('mobileToggle').querySelector('i').classList.add('fa-bars');
+                if (window.innerWidth <= 768) {
+                    document.getElementById('sidebar').classList.remove('active');
+                    document.getElementById('mobileToggle').querySelector('i').classList.remove('fa-times');
+                    document.getElementById('mobileToggle').querySelector('i').classList.add('fa-bars');
+                }
+            });
+        });
+
+        // Set active navigation link based on scroll position
+        window.addEventListener('scroll', function() {
+            const sections = document.querySelectorAll('section[id], .legal-section');
+            const navLinks = document.querySelectorAll('.sidebar-nav a');
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 100;
+                const sectionHeight = section.clientHeight;
+                if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + current) {
+                    link.classList.add('active');
+                }
             });
         });
     </script>
